@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const routeUser = require('./Router/UserRouter');
 const routeQuestion = require('./Router/QuestionRouter');
+const routerQuiz = require('./Router/QuizRouter');
 
 
 mongoose.set('strictQuery', false);
@@ -16,6 +17,7 @@ app.use(bodyParser.json());
 
 app.use('/',routeUser);
 app.use('/Question',routeQuestion);
+app.use('/Quiz',routerQuiz);
 
 
 
@@ -44,56 +46,6 @@ app.use('/Question',routeQuestion);
 app.get('/', (req, res) => {
   // Récupérez la liste des quizs disponibles ici
     res.json({'message': 'all Books'});
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// GET /quiz : Récupérer la liste des quiz auxquels l'utilisateur est invité ou l'utilisateur est l'auteur
-app.get('/quiz', (req, res) => {
-  // Récupérez la liste des quiz auxquels l'utilisateur est invité ou l'utilisateur est l'auteur ici
-  const quizList = [{ id: 1, name: 'Quiz 1' }, { id: 2, name: 'Quiz 2' }];
-
-  res.json(quizList);
-});
-
-// POST /quiz : Créer un nouveau quiz
-app.post('/quiz', (req, res) => {
-  // Récupérez les données du quiz à partir du corps de la demande
-  const quiz = req.body;
-
-  // Ajoutez le quiz à votre base de données ici
-  const newQuiz = { id: 3, name: 'Quiz 3' };
-
-  res.json(newQuiz);
-});
-
-// DELETE /quiz/:id : Modifier un quiz
-app.delete('/quiz/:id', (req, res) => {
-  // Récupérez l'ID du quiz à partir de l'URL
-  const quizId = req.params.id;
-
-  // Récupérez les nouvelles données du quiz à partir du corps de la demande
-  const updatedQuiz = req.body;
-
-  // Mettez à jour le quiz dans votre base de données ici
-
-  res.json(updatedQuiz);
 });
 
 
